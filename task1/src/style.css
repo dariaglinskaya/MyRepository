@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background: #ffbb77;
+    font: 12px/1.67 Arial, Helvetica, sans-serif;
+    padding: 40px 0;
+}
+.wrapper{
+    width: 940px;
+    margin: 0 auto;
+}
+header{
+    background: url(header.png) no-repeat 50%;
+    height: 460px;
+    border-radius: 7px 7px 0 0;
+}
+header h1{
+    float: left;
+    margin: 5px 0 0 20px;
+}
+nav li{
+    float: right;
+    margin: 20px 80px 0 0 ;
+}
+nav li a{
+    color: #693615;
+    text-transform: uppercase;
+    background: url(bottom.png) no-repeat ;
+}
