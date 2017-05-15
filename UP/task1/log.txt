@@ -1,0 +1,12 @@
+$ git log
+commit 4f74dde6ca67f3a3a1021a40f6c9d6caa2948d0a
+Author: Daria Glinskaya <fpm.glinskaya@gmail.com>
+Date:   Fri Feb 17 18:47:19 2017 +0300
+
+    add status.txt
+
+commit 485ed413cbe56dc4f88a6f6ee990b478c3b41d0e
+Author: Daria Glinskaya <fpm.glinskaya@gmail.com>
+Date:   Fri Feb 17 18:46:05 2017 +0300
+
+    add .gitignore
