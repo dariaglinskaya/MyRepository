@@ -88,7 +88,7 @@
                 <span class="article-list-item-date">ГГГГ.ММ.ДД</span>
                 <p class="article-list-item-summary">Краткое описание новости.</p>
                 <span class="load-more">
-                        <a href="#" id="show-more"  data-id="id" onclick="renderViewPage(this.parentNode.parentNode);">Показать полностью</a>
+                        <a href="#" id="show-more"  class="show-more" data-id="id" onclick="renderViewPage(this);">Показать полностью</a>
                 </span>
             </div>
         </template>
@@ -130,7 +130,7 @@
             <textarea name="title" type="text" id="edit-news-title"></textarea>
             <textarea name="summary"  id="edit-news-summary"></textarea>
             <textarea name="content" id="edit-news-content"></textarea>
-            <button href="#" id="edit-news-post-button" onclick="editNews()">Применить</button>
+            <button href="#" id="edit-news-post-button" onclick="editNews(this)">Применить</button>
         </form>
     </div>
 </div>

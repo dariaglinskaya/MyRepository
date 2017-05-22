@@ -3,7 +3,7 @@ const app = express();
 const article = require('./article');
 const users = require('./users');
 
-app.set('port', (process.env.PORT || 3080));
+app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/public'));
 app.use('/article', article);
 app.use('/users', users);

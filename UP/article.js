@@ -7,7 +7,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.put('/getArticles', articleService.getArticles);
 router.get('/all', articleService.allArticles);
-router.get('/:id', articleService.getArticle);
+router.get('/:_id', articleService.getArticle);
 router.post('/add', articleService.addArticle);
 router.delete('/:_id', articleService.removeArticle);
 router.patch('/edit', articleService.editArticle);

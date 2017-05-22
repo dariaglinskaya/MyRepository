@@ -1,56 +1,51 @@
 'use strict'
 
-let filter = null;
-
 const articlesService = (function () {
   function compareDate(firstArticle, secondArticle) {
     return (secondArticle.createdAt - firstArticle.createdAt);
   }
 
-  function getArticles(skip, top, filterConfig) {
-    skip = skip || 0;
-    top = top || 5;
-      return new Promise((resolve, reject) => {
-          const req = new XMLHttpRequest();
-          req.open('PUT', '/article/getArticles');
-          req.setRequestHeader('content-type', 'application/json');
-          req.onload = () => {
-              if (req.status === 200) {
-                  resolve(JSON.parse(req.responseText, (key, value) => {
-                      if (key === 'createdAt') return new Date(value);
-                      return value;
-                  }));
-              }
-          };
-          req.onerror = () => reject(new Error("getArticles crashed."));
-          req.send(JSON.stringify({skip, top, filterConfig}));
-      });
-  }
+    function getArticles(skip, top, filterConfig) {
+        skip = skip || 0;
+        top = top || 10;
 
+        return new Promise((resolve, reject) =>{
+            const req = new XMLHttpRequest();
+            req.open('PUT', '/article/getArticles');
+            req.setRequestHeader('content-type', 'application/json');
+            req.onload = () => {
+                if (req.status === 200) {
+                    resolve(JSON.parse(req.responseText, (key, value) => {
+                        if (key === 'createdAt') return new Date(value);
+                        return value;
+                    }));
+                }
+            };
+            req.onerror = () => reject(new Error("getArticles crashed."));
+            req.send(JSON.stringify({skip, top, filterConfig}));
+    });
+    }
 
-  function getArticle(id) {
-      return new Promise((resolve, reject) => {
-          const req = new XMLHttpRequest();
-          req.open('GET', '/article/' + id);
-          req.onload = () => {
-              if (req.status === 200) {
-                  resolve(JSON.parse(req.responseText));
-              }
-          };
-          req.onerror = () => reject(new Error("getArticle crashed."));
-          req.send();
-      });
-  }
+    function getArticle(_id) {
+        return new Promise((resolve, reject) => {
+                const req = new XMLHttpRequest();
+        req.open('GET', '/article/' + _id);
+        req.onload = () => {
+            if (req.status === 200) {
+                resolve(JSON.parse(req.responseText));
+            }
+        };
+        req.onerror = () => reject(new Error("getArticle crashed."));
+        req.send();
+    });
+    }
 
   function validateArticle(article) {
-    if (article.id && article.createdAt && article.author &&
-            article.content && article.title &&
-            typeof article.id === 'string' && typeof article.createdAt === 'object' &&
-            typeof article.author === 'string' &&
-            typeof article.content === 'string' && typeof article.title === 'string' &&
-            article.title.length > 0 && article.title.length <= 100 &&
-            article.content.length > 0 && article.author.length > 0) { return true; }
-    return false;
+    return article.createdAt && article.author && article.content && article.title &&
+        typeof article.createdAt === 'object' && typeof article.author === 'string' &&
+        typeof article.content === 'string' && typeof article.title === 'string' &&
+        article.title.length > 0 && article.title.length <= 100 &&
+        article.content.length > 0 && article.author.length > 0;
   }
 
   function addArticle(article) {
@@ -73,14 +68,14 @@ const articlesService = (function () {
       });
   }
   function editArticle(article) {
-      return new Promise((resolve, reject) => {
-          const req = new XMLHttpRequest();
-          req.open('PATCH', '/article/edit');
-          req.setRequestHeader('content-type', 'application/json');
-          req.onload = () => req.status === 200 ? resolve() : reject();
-          req.onerror = () => reject(new Error("authorization crashed."));
-          req.send(JSON.stringify(article));
-      });
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
+            req.open('PATCH', '/article/edit');
+            req.setRequestHeader('content-type', 'application/json');
+            req.onload = () => req.status === 200 ? resolve() : reject();
+            req.onerror = () => reject(new Error("authorization crashed."));
+            req.send(JSON.stringify(article));
+        });
   }
     function getAllArticles() {
         return new Promise((resolve, reject) => {
@@ -135,7 +130,8 @@ const articlesTool = (function () {
   }
   function renderArticle(article) {
     const template = articleTemplate;
-    template.content.querySelector('.article-list-item').dataset.id = article.id;
+    template.content.querySelector('.show-more').dataset.id = article._id;
+    template.content.querySelector('.article-list-item').dataset.id = article._id;
     template.content.querySelector('.article-list-item-title').textContent = article.title;
     template.content.querySelector('.article-list-item-summary').textContent = article.summary;
     template.content.querySelector('.article-list-item-author').textContent = article.author;
@@ -156,7 +152,7 @@ const articlesTool = (function () {
 
 let amountLoadedArticles = 0;
 
-let filterLength = 0;
+var filterLength = 0;
 
 function checkShowMoreBtn() {
     if (amountLoadedArticles > filterLength) {
@@ -168,6 +164,7 @@ function checkShowMoreBtn() {
     }
 }
 
+var filter = null;
 function showNews(filterConfig) {
     amountLoadedArticles += 5;
     filter = filterConfig || null;
@@ -177,7 +174,7 @@ function showNews(filterConfig) {
             filterLength = articles.length;
             checkShowMoreBtn();
             articlesTool.removeArticlesFromDOM();
-            articlesTool.insertArticlesToDOM(articles);
+            articles.length > 0 ? articlesTool.insertArticlesToDOM(articles) : alert("Not found");
         });
 }
 

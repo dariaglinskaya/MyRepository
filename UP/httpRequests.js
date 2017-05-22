@@ -1,16 +1,11 @@
 const articleModel = require('./mongo/db').articleModel;
 
-exports.getLength = (req, res) => res.json(db.articles.count());
-
-
-
 exports.removeArticle = (req, res) => {
     articleModel.findByIdAndRemove(req.params._id, err => !err ? res.sendStatus(200) : res.sendStatus(500));
 };
 exports.addArticle = (req, res) => {
     const article = req.body;
     article.createdAt = new Date();
-    article.id = article.author + article.createdAt.getTime();
     new articleModel(article).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
 };
 
@@ -22,23 +17,31 @@ exports.editArticle = (req, res) => {
 
 exports.getArticle = (req, res) => {
     articleModel.findById(req.params._id, (err, article) => {
-        res.json(article);
-    });
-   };
+        if (!article) {
+        res.statusCode = 404;
+        res.send({error: 'not found'});
+    }
+    !err ? res.json(article) : res.sendStatus(500);
+});
+};
 
 function parseFilter(filterConfig) {
     const filter = {};
-    if (filter.author) {
-        filter.author = filterConfig.author;
-    }
-    if (filter.createdAtFrom || filter.createdAtTo) {
-        filter.createdAt = {
-            createdAtFrom: filter.createdAtFrom,
-            createdAtTo: filter.createdAtTo,
-        };
+    if(filterConfig) {
+        if (filterConfig.author) {
+            filter.author = filterConfig.author;
+        }
+        if (filterConfig.createdAtFrom|| filterConfig.createdAtTo ) {
+            filter.createdAt = {};
+            if (filterConfig.createdAtFrom) {
+                filter.createdAt['$gte'] = filterConfig.createdAtFrom;
+            }
+            if (filterConfig.createdAtTo) {
+                filter.createdAt['$lt'] = filterConfig.createdAtTo;
+            }
+        }
     }
     return filter;
-
 }
 
 exports.getArticles = (req, res) => {

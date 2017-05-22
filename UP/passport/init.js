@@ -8,7 +8,7 @@ module.exports = (passport) => {
 
     passport.deserializeUser((user, done) => {
         const err = user ? null : new Error('deserializing error');
-    console.log('deserialized user:', user.username);
+
     done(err, user.username);
 });
 

@@ -6,6 +6,7 @@ function filterStart() {
   const filterConfig = {};
   if (author) {
       filterConfig.author = author;
+
   }
   if (dateFrom) {
     filterConfig.createdAtFrom = new Date(dateFrom);

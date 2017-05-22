@@ -1,14 +1,14 @@
 'use strict'
 
-function mainPage(filterConfiguration) {
-  addUserUI();
-  filter = filterConfiguration || null;
-  document.getElementById('head').style.display = 'block';
-  document.getElementById('wrapper').style.display = 'none';
-  document.getElementById('main').style.display = 'block';
-  document.getElementById('view-news-page').style.display = 'none';
-  document.getElementById('edit-news-page').style.display = 'none';
-  showNews(filter);
+function mainPage(filterConfig){
+    addUserUI();
+    filter = filterConfig || null;
+    document.getElementById('head').style.display = 'block';
+    document.getElementById('wrapper').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    document.getElementById('view-news-page').style.display = 'none';
+    document.getElementById('edit-news-page').style.display = 'none';
+    showNews(filter);
 }
 function editNewsPage() {
   addUserUI();

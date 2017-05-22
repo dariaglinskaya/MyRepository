@@ -9,7 +9,7 @@ function renderViewPage(element) {
           document.getElementById('view-news-summary').textContent = article.summary;
           document.getElementById('view-news-meta').textContent = `${article.author}, ${
               articlesTool.formatDateToString(new Date(article.createdAt))
-              }}`;
+              }`;
           document.getElementById('view-edit-btn').dataset.id = article._id;
           document.getElementById('view-delete-btn').dataset.id = article._id;
           const username = localStorage.getItem('username');
