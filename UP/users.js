@@ -19,13 +19,13 @@ router.use(passport.initialize());
 router.use(passport.session());
 require('./passport/init')(passport);
 
-router.post('/login', passport.authenticate('login'), (req, res) => res.sendStatus(200));
+router.post('/login', passport.authenticate('login'), (req, res) => res.status(200).end());
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
-res.sendStatus(200);
+    res.status(200).end();
 });
 
-router.get('/isAuthorized', (req, res) => req.user ? res.send(req.user) : res.sendStatus(401));
+router.get('/isAuthorized', (req, res) => req.user ? res.status(200).send(req.user) : res.sendStatus(401));
 
 module.exports = router;

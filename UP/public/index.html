@@ -9,60 +9,62 @@
 </head>
 <body>
 <div class="wrapper">
-<div class="header" id="head">
-    <img class="avatar" src="images/avatar.png">
-    <span class="user" id="username">Гость</span>
-    <button class="log-out" id="log-out-button">Выйти</button>
-    <form action="javascript:void(0)" onclick="this.nextElementSibling.style.display='block';" >
-        <button id="log-in-button" type="submit" class="log-in">Войти</button>
-    </form>
-    <div id="authorization-page" class = "modal">
-        <form class="authorization-form" name="authorizationForm">
-            <h3>Авторизация</h3>
-            <button id="close-auth-form" onclick="document.getElementById('authorization-page').style.display='none'; event.preventDefault();"></button>
-            <div class="clear"></div>
-            <span></span><input class="username" type="text" name="username"  placeholder="Логин" required/><br>
-            <div class="clear"></div>
-            <span></span><input class="password" type="password" placeholder="Пароль" name="password" required/><br>
+    <div class="header" id="head">
+        <img class="avatar" src="images/avatar.png">
+        <a href="#" onclick="mainPage();"><img class="logo" src="images/LOGOTYPE2.png"></a>
+        <span class="user" id="username">Гость</span>
+        <button class="log-out" id="log-out-button">Выйти</button>
+        <form action="javascript:void(0)" onclick="this.nextElementSibling.style.display='block';" >
+            <button id="log-in-button" type="submit" class="log-in">Войти</button>
+        </form>
+        <div id="authorization-page" class = "modal">
+            <form class="authorization-form" name="authorizationForm">
+                <h3>Авторизация</h3>
+                <button id="close-auth-form" onclick="document.getElementById('authorization-page').style.display='none'; event.preventDefault();"></button>
+                <div class="clear"></div>
+                <span></span><input class="username" type="text" name="username"  placeholder="Логин" required/><br>
+                <div class="clear"></div>
+                <span></span><input class="password" type="password" placeholder="Пароль" name="password" required/><br>
             <button class="log-in-sb" id="log-in-button-submit" onclick="logIn();">Войти</button>
-            <span class="incorrect-input"></span>
-        </form>
-    </div>
-    <a href="#" onclick="mainPage();"><img class="logo" src="images/LOGOTYPE2.png"></a>
-</div>
-<div id="main" class="clearfix">
-    <div class="form" id="form-f">
-        <form class="form-3">
-            <p class="clearfix">
-                <label >Автор</label>
-                <input type="text" name="user" id="user-filter" placeholder="автор">
-            </p>
-            <p class="clearfix">
-                <label >Дата</label>
-            <p style="color: white";> c </p>
-            <input type="date" name="date" id="date-from-filter" placeholder="дата">
-            </p>
-            <p class="clearfix">
-            <p style="color: white";> по </p>
-            <input type="date" name="date" id="date-to-filter" placeholder="дата">
-            </p>
-            <p class="clearfix">
-                <input type="submit" name="submit" value="Найти" onclick="filterStart(); this.form.reset()">
-            </p>
-        </form>
+                <span class="incorrect-input"></span>
+            </form>
+        </div>
+
     </div>
 
-    <form action="javascript:void(0)" onclick="this.nextElementSibling.style.display='block';" >
-        <button id="add-news-btn" type="submit" class="add-news-button">Добавить новость</button>
-    </form>
-    <div id="parent_popup_click1" class="modal">
-        <div class="modal-content">
-            <form class="form-b">
+    <div id="main" class="clearfix">
+        <div class="form" id="form-f">
+            <form class="form-3">
+                <p class="clearfix">
+                    <label >Автор</label>
+                    <input type="text" name="user" id="user-filter" placeholder="автор">
+                </p>
+                <p class="clearfix">
+                    <label >Дата</label>
+                <p style="color: white";> c </p>
+                <input type="date" name="date" id="date-from-filter" placeholder="дата">
+                </p>
+                <p class="clearfix">
+                <p style="color: white";> по </p>
+                <input type="date" name="date" id="date-to-filter" placeholder="дата">
+                </p>
+                <p class="clearfix">
+                    <input type="submit" name="submit" value="Найти" onclick="filterStart(); this.form.reset()">
+                </p>
+            </form>
+        </div>
+        <form action="javascript:void(0)" onclick="this.nextElementSibling.style.display='block';" >
+            <button id="add-news-btn" type="submit" class="add-news-button">Добавить новость</button>
+        </form>
+
+        <div id="parent_popup_click1" class="modal">
+            <div class="modal-content">
+                <form class="form-b">
                     <h3>Добавить новость</h3>
                     <button id="close-send-form" onclick="document.getElementById('parent_popup_click1').style.display='none';"></button>
                     <div class="clear"></div>
                     <div class="new-text-container">
-                        <textarea id="news-title" placeholder="Название"></textarea>
+                        <textarea id="news-title" placeholder="Заголовок"></textarea>
                         <textarea id="news-description" placeholder="Описание"></textarea>
                         <textarea id="news-text" placeholder="Текст"></textarea>
                         <div>
@@ -71,38 +73,38 @@
                     </div>
                 </form>
             </div>
-
-    </div>
-
-    <div id="container">
-        <div class="content">
         </div>
-        <template id="template-article-list-item">
-            <div class="article-list-item" data-id="id">
-                <!--div class="edit_action">
+
+        <div id="container">
+            <div class="content">
+            </div>
+            <template id="template-article-list-item">
+                <div class="article-list-item" data-id="id">
+                    <!--div class="edit_action">
                     <a href="#"><img id="delete-btn" class="delete-button" src="images/delete.png" onclick="deletePost(this)"></a>
                     <a href="#"><img id="edit-btn" class="edit-button" src="images/edit.png" onclick="editPost(this)"></a>
                 </div-->
-                <h2><a class="article-list-item-title">Заголовок</a></h2>
-                <span class="article-list-item-author">Имя пользователя | </span>
-                <span class="article-list-item-date">ГГГГ.ММ.ДД</span>
-                <p class="article-list-item-summary">Краткое описание новости.</p>
-                <span class="load-more">
+                    <h2><a class="article-list-item-title">Заголовок</a></h2>
+                    <span class="article-list-item-author">Имя пользователя | </span>
+                    <span class="article-list-item-date">ГГГГ.ММ.ДД</span>
+                    <p class="article-list-item-summary">Краткое описание новости.</p>
+                    <span class="load-more">
                         <a href="#" id="show-more"  class="show-more" data-id="id" onclick="renderViewPage(this);">Показать полностью</a>
-                </span>
+                    </span>
+                </div>
+            </template>
+
+            <div class="pagination" id="pag">
+                <a href="#" id="active" onclick="showMore();">Показать ещё</a>
             </div>
-        </template>
-    </div>
+        </div>
 
-    
 
-    <div class="pagination" id="pag">
-        <a href="#" id="active" onclick="showMore();">Показать ещё</a>
+
+        <p id="back-top">
+            <a href="#top"><span></span>Back to Top</a>
+        </p>
     </div>
-    <p id="back-top">
-        <a href="#top"><span></span>Back to Top</a>
-    </p>
-</div>
 </div>
 </body>
 

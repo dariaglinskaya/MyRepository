@@ -15,5 +15,6 @@ function filterStart() {
     filterConfig.createdAtTo = new Date(dateTo);
   }
   mainPage(filterConfig);
+  event.preventDefault();
 }
 

@@ -17,7 +17,6 @@ body{
     overflow-x: hidden ;
     height: 100%;
     min-height:100%;
-    position:relative
 }
 #head{
     width: 100%;
@@ -25,21 +24,16 @@ body{
 .header{
     background: #38595e;
     height: 80px;
-    width: 100%;
 }
 .logo{
-    margin: 1% 0 0 0;
+    margin: 15px 0 10px 7%;
     height: 8%;
-    width: 13%;
     position: absolute;
     float: left;
-    top: 5px;
-    left: 7.5%;
 }
 .logo:hover{
     box-shadow: 0 0 10px rgba(255,255,255,.6), inset 0 0 10px rgba(255,255,255,1);
-    height: 9%;
-    width: 13.5%;
+
 }
 .user{
     color: white;
@@ -82,7 +76,7 @@ body{
     border-radius: 3px;
     background: #38a6f0;
     color: white;
-    margin: 0 0 0 5px;
+    margin: 0 0 5px 5px;
 }
 .log-out{
     font-family: 'Trebuchet MS', sans-serif;
@@ -108,6 +102,7 @@ log-in{
 #main {
     margin: 5px 0 0 0;
     padding-bottom:2.5em;
+    width: 100%;
     min-height: calc(100vh - 50px);
 }
 
@@ -135,7 +130,6 @@ log-in{
 #container{
     padding-top: 10px;
     margin-left: 7%;
-    position: relative;
 }
 .article-list-item-title{
     font-size: 20px;
@@ -156,16 +150,17 @@ log-in{
 .pagination {
     margin-top: 2%;
     margin-bottom: 3%;
+    text-align: center;
     display: flex;
-    align-items: left;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 }
 .pagination a {
     color: #4f4c45;
     font-size: 15px;
-    float: left;
     padding: 0 8px;
+    text-align: center;
     text-decoration: none;
     border: 1px solid #6f748c;
     opacity: 0.6;
@@ -587,8 +582,9 @@ div.page-navigation{
     margin: 15px 5px 0 8%;
 }
 #edit-news-page{
-    width: 50%;
-    padding-bottom:2.5em;
+    width: 70%;
+    margin-top: 1%;
+    margin-left: 8%;
     background:#fff;
     box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
@@ -596,7 +592,6 @@ div.page-navigation{
 #wrapper{
     height:calc(100vh - 80px - 15px);
     min-height:calc(100vh - 80px - 15px);
-    position:relative;
 }
 #view-news-content{
     font-size: 15px;

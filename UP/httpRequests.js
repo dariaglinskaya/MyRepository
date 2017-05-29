@@ -1,18 +1,18 @@
 const articleModel = require('./mongo/db').articleModel;
 
 exports.removeArticle = (req, res) => {
-    articleModel.findByIdAndRemove(req.params._id, err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    articleModel.findByIdAndRemove(req.params._id, err => !err ? res.status(200).end() : res.status(500).end());
 };
 exports.addArticle = (req, res) => {
     const article = req.body;
     article.createdAt = new Date();
-    new articleModel(article).save(err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    new articleModel(article).save(err => !err ? res.status(200).end() : res.status(500).end());
 };
 
 exports.editArticle = (req, res) => {
     const article = req.body;
     article.createdAt = new Date();
-    articleModel.findByIdAndUpdate(article._id, article, err => !err ? res.sendStatus(200) : res.sendStatus(500));
+    articleModel.findByIdAndUpdate(article._id, article, err => !err ? res.status(200).end() : res.status(500).end());
 };
 
 exports.getArticle = (req, res) => {
@@ -21,7 +21,7 @@ exports.getArticle = (req, res) => {
         res.statusCode = 404;
         res.send({error: 'not found'});
     }
-    !err ? res.json(article) : res.sendStatus(500);
+    !err ? res.json(article) : res.status(500).end();
 });
 };
 
@@ -49,10 +49,10 @@ exports.getArticles = (req, res) => {
         .sort({createdAt: -1})
         .skip(req.body.skip)
         .limit(req.body.top)
-        .exec((err, articles) => !err ? res.json(articles) : res.sendStatus(500));
+        .exec((err, articles) => !err ? res.json(articles) : res.status(500).end());
 };
 
 
 exports.allArticles = (req, res) => {
-    articleModel.find((err, articles) => !err ? res.json(articles) : res.sendStatus(500));
+    articleModel.find((err, articles) => !err ? res.json(articles) : res.status(500).end());
 };
