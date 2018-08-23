@@ -5,7 +5,7 @@ module.exports = (passport) => {
     passport.use('login', new LocalStrategy({
      	passReqToCallback: true
     },
-		(req, username, password, done) => {
+	(req, username, password, done) => {
             userModel.findOne({username: username}, (err, user) => {
             	if (err)
             		return done(err);
